@@ -6,7 +6,7 @@ const TASKS_FILE = "./taskList.js";
 
 function ensureStorageFile(tasksFile) {
   if (existsSync(tasksFile)) {
-    const readTasks = readFileSync(tasksFile, "utf-8");
+    readFileSync(tasksFile, "utf-8");
   } else {
     writeFileSync(tasksFile, JSON.stringify([]));
   }
