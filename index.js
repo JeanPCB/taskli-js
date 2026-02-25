@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 
 // read-write guarantee
 const TASKS_FILE = "./taskList.json";
-let id = 0;
+const getTasks = () => readFileSync(TASKS_FILE, "utf-8");
 
 function ensureStorageFile(tasksFile) {
   if (existsSync(tasksFile) && statSync(tasksFile).size > 0) {
@@ -20,7 +20,7 @@ function createTask(taskTitle) {
   };
 }
 
-function addTask(newTask, tasks = readFileSync(TASKS_FILE, "utf-8")) {
+function addTask(newTask, tasks = getTasks()) {
   const taskList = JSON.parse(tasks);
   const task = createTask(newTask);
 
