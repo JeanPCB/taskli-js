@@ -20,16 +20,17 @@ function createTask(taskTitle) {
   };
 }
 
-function addTask(newTask, tasks) {
+function addTask(newTask, tasks = readFileSync(TASKS_FILE, "utf-8")) {
   const taskList = JSON.parse(tasks);
-  taskList.push(newTask);
+  const task = createTask(newTask);
+
+  taskList.push(task);
   writeFileSync(TASKS_FILE, JSON.stringify(taskList, null, 2));
 }
 
 function main() {
   ensureStorageFile(TASKS_FILE);
-  const tasks = readFileSync(TASKS_FILE, "utf-8");
-  addTask(createTask("task testing"), tasks);
+  addTask("my task inside task");
 }
 
 main();
