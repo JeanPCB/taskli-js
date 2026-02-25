@@ -1,2 +1,5 @@
 .editorconfig
 node_modules
+
+# ignore personal tasks
+taskList.js
