@@ -2,8 +2,8 @@
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 
 // read-write guarantee
-const TASKS_FILE = "./taskList.js";
-let id = 1;
+const TASKS_FILE = "./taskList.json";
+let id = 0;
 
 function ensureStorageFile(tasksFile) {
   if (existsSync(tasksFile) && statSync(tasksFile).size > 0) {
