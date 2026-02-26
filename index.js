@@ -4,7 +4,6 @@ import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 // read-write guarantee
 const TASKS_FILE = "./taskList.json";
 const getTasks = () => JSON.parse(readFileSync(TASKS_FILE, "utf-8"));
-const id = 1;
 
 function ensureStorageFile(tasksFile) {
   if (existsSync(tasksFile) && statSync(tasksFile).size > 0) {
@@ -14,9 +13,15 @@ function ensureStorageFile(tasksFile) {
   }
 }
 
+function getId(taskList = getTasks()) {
+  if (taskList.length === 0) return 1;
+  
+  return taskList[taskList.length - 1].id + 1;
+}
+
 function createTask(taskTitle) {
   return {
-    id,
+    id: getId(),
     title: taskTitle,
   };
 }
