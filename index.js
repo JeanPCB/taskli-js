@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 // read-write guarantee
 const TASKS_FILE = "./taskList.json";
@@ -44,4 +45,6 @@ function main() {
   showTasks();
 }
 
-main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
