@@ -45,12 +45,21 @@ function showTasks(tasks = getTasks()) {
 
 function removeTask(id, tasks = getTasks()) {
   tasks.splice(id - 1, 1);
+  normalizeIds(tasks, id);
   saveTask(tasks);
+}
+
+function normalizeIds(tasks, id) {
+  tasks.forEach((task) => {
+    if (task.id > id) {
+      task.id--;
+    }
+  });
 }
 
 function main() {
   ensureStorageFile(TASKS_FILE);
-  // addTask("my task inside task");
+  // addTask("3");
   removeTask(2);
   showTasks();
 }
