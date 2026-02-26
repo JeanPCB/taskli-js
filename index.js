@@ -34,7 +34,7 @@ function saveTask(tasks) {
 function addTask(newTask, tasks = getTasks()) {
   const task = createTask(newTask);
   tasks.push(task);
-  writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2));
+  saveTask(tasks);
 }
 
 function showTasks(tasks = getTasks()) {
@@ -43,9 +43,15 @@ function showTasks(tasks = getTasks()) {
   });
 }
 
+function removeTask(id, tasks = getTasks()) {
+  tasks.splice(id - 1, 1);
+  saveTask(tasks);
+}
+
 function main() {
   ensureStorageFile(TASKS_FILE);
-  addTask("my task inside task");
+  // addTask("my task inside task");
+  removeTask(2);
   showTasks();
 }
 
