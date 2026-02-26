@@ -32,9 +32,16 @@ function addTask(newTask, tasks = getTasks()) {
   writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2));
 }
 
+function showTasks(tasks = getTasks()) {
+  tasks.forEach(task => {
+    console.log(`[${task.id}] - ${task.title}`);
+  });
+}
+
 function main() {
   ensureStorageFile(TASKS_FILE);
   addTask("my task inside task");
+  showTasks();
 }
 
 main();
