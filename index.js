@@ -45,7 +45,7 @@ function showTasks(tasks = getTasks()) {
 }
 
 function removeTask(id, tasks = getTasks()) {
-  if (Number(id)) {
+  if (Number(id) > 0) {
     tasks.splice(id - 1, 1);
     normalizeIds(tasks, id);
     saveTask(tasks);
@@ -62,10 +62,24 @@ function normalizeIds(tasks, id) {
   });
 }
 
+function markAsDone(id, tasks = getTasks()) {
+  if (Number(id) > 0) {
+    tasks.forEach((task) => {
+      if (task.id === id) {
+        task.status = "done";
+      }
+    });
+    saveTask(tasks);
+  } else {
+    console.log("Invalid task ID!");
+  }
+}
+
 function main() {
   ensureStorageFile(TASKS_FILE);
-  // addTask("3");
-  removeTask(2);
+  // addTask("testing tasks");
+  // removeTask(2);
+  markAsDone(1);
   showTasks();
 }
 
