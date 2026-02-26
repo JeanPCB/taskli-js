@@ -27,6 +27,10 @@ function createTask(taskTitle) {
   };
 }
 
+function saveTask(tasks) {
+  writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2));
+}
+
 function addTask(newTask, tasks = getTasks()) {
   const task = createTask(newTask);
   tasks.push(task);
