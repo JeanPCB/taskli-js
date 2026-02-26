@@ -63,9 +63,20 @@ function normalizeIds(tasks, id) {
 }
 
 function markAsDone(id, tasks = getTasks()) {
-    const task = findTaskById(id, tasks);
-    task.status = "done";
+  const task = findTaskById(id, tasks);
+  task.status = "done";
+  saveTask(tasks);
+}
+
+function replaceTaskTitle(newTitle, id, tasks = getTasks()) {
+  const task = findTaskById(id, tasks);
+
+  if (newTitle != task.title) {
+    task.title = newTitle;
     saveTask(tasks);
+  }
+
+  return task;
 }
 
 function findTaskById(id, tasks) {
