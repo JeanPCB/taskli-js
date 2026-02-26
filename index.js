@@ -63,12 +63,8 @@ function normalizeIds(tasks, id) {
 }
 
 function markAsDone(id, tasks = getTasks()) {
-  if (Number(id) > 0) {
-    tasks.forEach((task) => {
-      if (task.id === id) {
-        task.status = "done";
-      }
-    });
+    const task = findTaskById(id, tasks);
+    task.status = "done";
     saveTask(tasks);
 }
 
