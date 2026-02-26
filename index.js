@@ -24,6 +24,7 @@ function createTask(taskTitle) {
   return {
     id: getId(),
     title: taskTitle,
+    status: "ongoing",
   };
 }
 
