@@ -70,9 +70,15 @@ function markAsDone(id, tasks = getTasks()) {
       }
     });
     saveTask(tasks);
-  } else {
+}
+
+function findTaskById(id, tasks) {
+  if (!Number(id) > 0) {
     console.log("Invalid task ID!");
+    return null;
   }
+
+  return tasks.find((task) => task.id === id) ?? null;
 }
 
 function main() {
